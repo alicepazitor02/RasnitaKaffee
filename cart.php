@@ -164,7 +164,7 @@ function calculateTotalCart(){
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">RÂȘNIȚA KAFFEE</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -172,11 +172,11 @@ function calculateTotalCart(){
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Acasă</a>
-                    <a href="about.html" class="nav-item nav-link">Despre</a>
-                    <a href="products.html" class="nav-item nav-link">Meniu</a>
+                    <a href="index.php" class="nav-item nav-link active">Acasă</a>
+                    <a href="about.php" class="nav-item nav-link">Despre</a>
+                    <a href="products.php" class="nav-item nav-link">Meniu</a>
      
-                    <a href="cart.html" class="nav-item nav-link">Cos De Cumparaturi</a>
+                    <a href="cart.php" class="nav-item nav-link">Cos De Cumparaturi</a>
                 </div>
             </div>
         </nav>
@@ -226,7 +226,7 @@ function calculateTotalCart(){
                                 <img style="width: 150px; height:150px" src="<?php echo 'assets/img/'.$value['product_image']; ?>" alt="">
                                 <div>
                                     <p><?php echo $value['product_name'];?></p>
-                                    <small><span><?php echo $value['product_price'];?> lei</span></small>
+                                    <small><span><?php echo $value['product_price'];?> EUR</span></small>
                                     <br>
                                     <form method="POST" action="cart.php"> 
                                         <input type="hidden" name="product_id" value="<?php echo $value['product_id']; ?>">
@@ -246,7 +246,7 @@ function calculateTotalCart(){
                         </td>
 
                         <td>
-                            <span class="product-price"><?php echo $value['product_price'] * $value['product_quantity'] ?> lei</span>
+                            <span class="product-price"><?php echo $value['product_price'] * $value['product_quantity'] ?> EUR</span>
                         </td>
                     </tr>
            <?php } ?>
@@ -261,7 +261,7 @@ function calculateTotalCart(){
                 <tr>
                     <td>Total</td>
                     <?php if(isset($_SESSION['cart'])) { ?>
-                    <td><?php echo  $_SESSION['total']." lei " ?></td>
+                    <td><?php echo  $_SESSION['total']." EUR " ?></td>
                     <?php  } ?>
                 </tr>
            

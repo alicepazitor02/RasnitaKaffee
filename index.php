@@ -32,7 +32,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4  text-white"> RÂȘNIȚA KAFFEE</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -40,11 +40,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Acasa</a>
-                    <a href="about.html" class="nav-item nav-link">Despre Noi</a>
-                    <a href="products.html" class="nav-item nav-link">Meniu</a>
+                    <a href="index.php" class="nav-item nav-link active">Acasa</a>
+                    <a href="about.php" class="nav-item nav-link">Despre Noi</a>
+                    <a href="products.php" class="nav-item nav-link">Meniu</a>
      
-                    <a href="cart.html" class="nav-item nav-link">Cos De Cumparaturi</a>
+                    <a href="cart.php" class="nav-item nav-link">Cos De Cumparaturi</a>
                 </div>
             </div>
         </nav>
@@ -213,7 +213,7 @@ folosim doar ingrediente naturale și metode de preparare artizanale.</p>
                         <a href="<?php echo "single_product.php?id=".$product['product_id'];?>">  
                             <img style="width:200px; height: 180px" class="w-100 rounded-circle mb-3 mb-sm-0" src="assets/img/<?php echo $product['product_image']; ?>" alt="">
                         </a>
-                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> lei</h5>
+                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> EUR</h5>
                         </div>
                         <div class="col-8 col-sm-9">
                             <h4><?php echo $product['product_name']; ?></h4>
@@ -234,7 +234,7 @@ folosim doar ingrediente naturale și metode de preparare artizanale.</p>
                         <a href="<?php echo "single_product.php?id=".$product['product_id'];?>"> 
                             <img style="width:200px; height: 180px" class="w-100 rounded-circle mb-3 mb-sm-0"  src="assets/img/<?php echo $product['product_image']; ?>" alt="">
                         </a>
-                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> lei</h5>
+                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> EUR</h5>
                         </div>
                         <div class="col-8 col-sm-9">
                             <h4><?php echo $product['product_name']; ?></h4>
@@ -265,41 +265,41 @@ folosim doar ingrediente naturale și metode de preparare artizanale.</p>
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="assets/img/testimonial-1.jpg" alt="">
                         <div class="ml-3">
-                            <h4>Numele</h4>
-                            <i>Profesia</i>
+                            <h4>Gianina</h4>
+                            <i>Profesor</i>
                         </div>
                     </div>
-                    <p class="m-0">O cafenea de nota 10</p>
+                    <p class="m-0">O atmosfera plăcută, produse proaspete, relaxare</p>
                 </div>
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="assets/img/testimonial-2.jpg" alt="">
                         <div class="ml-3">
-                            <h4>Numele</h4>
-                            <i>Profesia</i>
+                            <h4>Liviu George</h4>
+                            <i>Manager restaurant</i>
                         </div>
                     </div>
-                    <p class="m-0">O cafenea de nota 10</p>
+                    <p class="m-0">Locul perfect în care să savurezi liniștit o cafea într-o dimineață agitată</p>
                 </div>
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="assets/img/testimonial-3.jpg" alt="">
                         <div class="ml-3">
-                            <h4>Numele</h4>
-                            <i>Profesia</i>
+                            <h4>Lora Tănase</h4>
+                            <i>Violonistă</i>
                         </div>
                     </div>
-                    <p class="m-0">O cafenea de nota 10</p>
+                    <p class="m-0">Iubesc să vin aici să savurez un ceai după repetiții!</p>
                 </div>
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="assets/img/testimonial-4.jpg" alt="">
                         <div class="ml-3">
-                            <h4>Numele</h4>
-                            <i>Profesia</i>
+                            <h4>Adrian Ionescu</h4>
+                            <i>Programator</i>
                         </div>
                     </div>
-                    <p class="m-0">Se aud glume si rasete, iar toti par ca se distreaza. Este o atmosfera minunata.</p>
+                    <p class="m-0">Se aud glume si rasete, iar toti pare ca se distreaza. Este o atmosfera minunata.</p>
                 </div>
             </div>
         </div>

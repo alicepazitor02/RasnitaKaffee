@@ -30,7 +30,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">RÂȘNIȚA KAFFEE</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -38,11 +38,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Acasă</a>
-                    <a href="about.html" class="nav-item nav-link">Despre</a>
-                    <a href="products.html" class="nav-item nav-link">Meniu</a>
+                    <a href="index.php" class="nav-item nav-link active">Acasă</a>
+                    <a href="about.php" class="nav-item nav-link">Despre</a>
+                    <a href="products.php" class="nav-item nav-link">Meniu</a>
      
-                    <a href="cart.html" class="nav-item nav-link">Coș de Cumpărături</a>
+                    <a href="cart.php" class="nav-item nav-link">Coș de Cumpărături</a>
                 </div>
             </div>
         </nav>
@@ -63,72 +63,65 @@
     </div>
     <!-- Page Header End -->
 
-
-    <!-- Menu Start -->
-    <div class="container-fluid pt-5">
+<!-- Menu Start -->
+<div class="container-fluid pt-5">
         <div class="container">
             <div class="section-title">
                 <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Meniu & Prețuri</h4>
-                <h1 class="display-4">Prețuri Competitive</h1>
+                <h1 class="display-4">Prețuri competitive</h1>
             </div>
+
+            <?php include('get_products.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="mb-5">Expresso</h1>
+                    <h1 class="mb-5">Bauturi</h1>
+
+                    <?php foreach($products as $product){ ?> 
+                        
+                        <?php if($product['product_category'] == 'bauturi'){ ?>
+
                     <div class="row align-items-center mb-5">
                         <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-1.jpg" alt="">
-                            <h5 class="menu-price">$5</h5>
+                        <a href="<?php echo "single_product.php?id=".$product['product_id'];?>">  
+                            <img style="width:200px; height: 180px" class="w-100 rounded-circle mb-3 mb-sm-0" src="assets/img/<?php echo $product['product_image']; ?>" alt="">
+                        </a>
+                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> lei</h5>
                         </div>
                         <div class="col-8 col-sm-9">
-                            <h4>Cafea Neagră</h4>
-                            <p class="m-0">...</p>
+                            <h4><?php echo $product['product_name']; ?></h4>
+                            <p class="m-0"><?php echo $product['product_description']; ?></p>
                         </div>
                     </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-2.jpg" alt="">
-                            <h5 class="menu-price">7 lei</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Ciocolată caldă</h4>
-                            <p class="m-0">...descriere...</p>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-3.jpg" alt="">
-                            <h5 class="menu-price">9 lei</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Cafea cu lapte</h4>
-                            <p class="m-0">....ceva descriere...</p>
-                        </div>
-                    </div>
+                        <?php } ?>
+                    <?php } ?>
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="mb-5">Cafea cu gheață</h1>
+                    <h1 class="mb-5">Prajituri</h1>
+                    <?php foreach($products as $product){ ?> 
+                        
+                        <?php if($product['product_category'] == 'cake'){ ?>
+
                     <div class="row align-items-center mb-5">
                         <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-1.jpg" alt="">
-                            <h5 class="menu-price">5 lei</h5>
+                        <a href="<?php echo "single_product.php?id=".$product['product_id'];?>"> 
+                            <img style="width:200px; height: 180px" class="w-100 rounded-circle mb-3 mb-sm-0"  src="assets/img/<?php echo $product['product_image']; ?>" alt="">
+                        </a>
+                            <h5 class="menu-price" style="font-size: 16px;"><?php echo $product['product_price']; ?> lei</h5>
                         </div>
                         <div class="col-8 col-sm-9">
-                            <h4>Americano</h4>
-                            <p class="m-0">.....jkdlfjașfdk/....</p>
+                            <h4><?php echo $product['product_name']; ?></h4>
+                            <p class="m-0"><?php echo $product['product_description']; ?></p>
                         </div>
                     </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-2.jpg" alt="">
-                            <h5 class="menu-price">7 lei</h5>
-                        </div>
-                       
-                    </div>
+                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
     <!-- Menu End -->
+
+
 
 
 

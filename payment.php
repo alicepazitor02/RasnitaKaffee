@@ -1,14 +1,10 @@
-<?php 
+
+
+<?php
 
 session_start();
-
-if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
-    header('location: index.php');
-}
-
+include('connection.php');
 ?>
-
-
 
 
 
@@ -46,7 +42,7 @@ if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">RÂȘNIȚA KAFFEE </h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -54,11 +50,11 @@ if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Acasă</a>
-                    <a href="about.html" class="nav-item nav-link">Despre</a>
-                    <a href="products.html" class="nav-item nav-link">Meniu</a>
+                    <a href="index.php" class="nav-item nav-link active">Acasă</a>
+                    <a href="about.php" class="nav-item nav-link">Despre</a>
+                    <a href="products.php" class="nav-item nav-link">Meniu</a>
      
-                    <a href="cart.html" class="nav-item nav-link">Coș De Cumpăraturi</a>
+                    <a href="cart.php" class="nav-item nav-link">Coș De Cumpăraturi</a>
                 </div>
             </div>
         </nav>
@@ -84,48 +80,36 @@ if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
         <div class="container">
         
        
-    <!-- Checkout -->
+    <!-- Payment -->
     <section class="my-2 py-3 checkout">
         <div class="container text-center mt-1 pt-5">
-            <h2>Formular Date Personale</h2>
+            <h2>Payment</h2>
             <hr class="mx-auto">
         </div>
 
-        <div class="mx-auto container">
-            <form id="checkout-form" action="place_order.php" method="POST">
-             
-                <div class="form-group checkout-small-element">
-                    <label for="">Nume complet</label>
-                    <input type="text" class="form-control" id="checkout-name" name="name" placeholder="nume prenume" required>
-                </div>
+                    <div class="mx-auto container text-center">
 
-                <div class="form-group checkout-small-element">
-                    <label for="">Email</label>
-                    <input type="email" class="form-control" id="checkout-email" name="email" placeholder="adresă de email" required>
-                </div>
-
-                <div class="form-group checkout-small-element">
-                    <label for="">Telefon</label>
-                    <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="număr de telefon" required>
-                </div>
-
-                <div class="form-group checkout-small-element">
-                    <label for="">Oraș</label>
-                    <input type="text" class="form-control" id="checkout-city" name="city" placeholder="oraș" required>
-                </div>
-
-                <div class="form-group checkout-large-element">
-                    <label for="">Adresă</label>
-                    <input type="text" class="form-control" id="checkout-address" name="address" placeholder="adresă de livrare" required>
-                </div>
+                       
+                                <?php if(isset($_SESSION['order_id']) && $_SESSION['order_id'] != 0
+                                && isset($_SESSION['total']) && $_SESSION['total'] != 0) {?>
+                                
+                                    <?php $amount = strval($_SESSION['total']); ?>
 
 
-                <div class="form-group checkout-btn-container">
-                    <p>Valoare totală plată: <?php echo $_SESSION['total'];?></p>
-                    <input type="submit" class="btn" id="checkout-btn" name="checkout_btn" value="Pasul Următor">
-                </div>
-        
-            </form>
+                                    <p>Total: <?php echo "$".$_SESSION['total']; ?> </p>
+
+
+                                    <!-- Set up a container element for the button -->
+                                     <div id="paypal-button-container"></div>
+
+                                <?php } else { ?>
+                                <p> Nu ați plasat nicio comandă </p>
+                                <?php } ?>
+                        
+
+                    </div>
+       
+ 
         </div>
     </section>
 
@@ -133,7 +117,45 @@ if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
             </div>
         </div>
     </div>
-    <!-- Cart End -->
+  
+    <!-- Replace "test" with your own sandbox Business account app client ID -->
+  <script src="https://www.paypal.com/sdk/js?client-id=ATLebtWVL_CQZYzjKQHphrfIg9SQxOw25c-WEQN61gCFvwRfGng7x2vKt0V8gyRxHGurcdO5eEy27GVB&currency=USD"></script>
+  
+  <script>
+    paypal.Buttons({
+      // Sets up the transaction when a payment button is clicked
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: <?php echo $amount; ?> // Can also reference a variable or function
+            }
+          }]
+        });
+      },
+      // Finalize the transaction after payer approval
+      onApprove: (data, actions) => {
+        return actions.order.capture().then(function(orderData) {
+          // Successful capture! For dev/demo purposes:
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+          const transaction = orderData.purchase_units[0].payments.captures[0];
+          alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+
+
+          window.location.href = "complete_payment.php?transaction_id=" + transaction.id;
+
+
+
+          // When ready to go live, remove the alert and show a success message within this page. For example:
+          // const element = document.getElementById('paypal-button-container');
+          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+          // Or go to another URL:  actions.redirect('thank_you.html');
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>
 
 
 

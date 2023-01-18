@@ -1,3 +1,15 @@
+
+
+<?php
+
+session_start();
+include('connection.php');
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +30,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-   <!--  <link href="assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> -->
+  <!--   <link href="assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> -->
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="assets/css/style.min.css" rel="stylesheet">
@@ -30,72 +42,101 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">RÂȘNIȚA KAFFEE</h1>
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
+                <h1 class="m-0 display-4 text-uppercase text-white">RÂȘNIȚA KAFFEE </h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Acasă</a>
-                    <a href="about.html" class="nav-item nav-link">Despre</a>
-                    <a href="products.html" class="nav-item nav-link">Meniu</a>
+                    <a href="index.php" class="nav-item nav-link active">Acasă</a>
+                    <a href="about.php" class="nav-item nav-link">Despre</a>
+                    <a href="products.php" class="nav-item nav-link">Meniu</a>
      
-                    <a href="cart.html" class="nav-item nav-link">Coș de Cumpărături</a>
+                    <a href="cart.php" class="nav-item nav-link">Coș De Cumpăraturi</a>
                 </div>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
 
-
-
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
         <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Despre Noi</h1>
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Finalizare & Plată</h1>
             <div class="d-inline-flex mb-lg-5">
-                <p class="m-0 text-white"><a class="text-white" href="">Acasă</a></p>
+                <p class="m-0 text-white"><a class="text-white" href="">Acasa</a></p>
                 <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">Despre Noi</p>
+                <p class="m-0 text-white">Finalizare & Plată</p>
             </div>
         </div>
     </div>
     <!-- Page Header End -->
 
 
-    <!-- About Start -->
-    <div class="container-fluid py-5">
+    <!-- Checkout Start -->
+    <div class="container-fluid pt-5">
         <div class="container">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Despre Noi</h4>
-                <h1 class="display-4">Servim din 1990</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 py-0 py-lg-5">
-                    <h1 class="mb-3">Povestea Noastră</h1>
-                    <h5 class="mb-3">De completat....</p>
-                    <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Află mai multe</a>
-                </div>
-                <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="img/about.png" style="object-fit: cover;">
+<?php
+
+if(isset($_SESSION['order_id']) && $_SESSION['order_id'] != 0
+&& isset($_SESSION['total']) && $_SESSION['total'] != 0) {
+    $order_id = $_SESSION['order_id'];
+    $total = $_SESSION['total'];
+    $products_bought = $_SESSION['cart'];
+
+    //se sterge totul din SESSION 
+    session_unset();
+    session_destroy();
+   
+   
+} else{
+    header("location:index.php");
+}
+
+?>    
+       
+    <!-- Payment -->
+    <section class="my-2 py-3 checkout">
+        <div class="container text-center mt-1 pt-5">
+            <h2>Payment</h2>
+            <hr class="mx-auto">
+        </div>
+
+                    <div class="mx-auto container text-center">
+
+                       
+                                <?php if(isset($_GET['success_message'])){?>
+                                    <h3 stype="color: green;"><?php echo $_GET['success_message']; ?></h3>
+                                    <?php } ?>
+                                
+                                    <p><?php echo "order id:  ". $order_id; ?></p>
+                                   <p> <?php echo "Va rugam sa pastrati  order id pentru ridicarea comenzii  ";?></p>
+
+                                
+                                    
+
+
+                                    
+
+                               
+                        
+
                     </div>
-                </div>
-                <div class="col-lg-4 py-0 py-lg-5">
-                    <h1 class="mb-3">Viziunea Noastră</h1>
-                    <p>Urmează a fi completat....</p>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>1. scriu ceva</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>2. scriu ceva</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>3. scriu ceva</h5>
-                    <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Mai multe....</a>
-                </div>
+       
+ 
+        </div>
+    </section>
+
+              
             </div>
         </div>
     </div>
-    <!-- About End -->
+  
+   
+</body>
+</html>
 
 
 
@@ -105,13 +146,12 @@
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
             <div class="col-lg-4 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Contact</h4>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>Str. Mureșenilor, Nr. 7, Brașov</p>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Strada Mureșenilor, Nr. 7, Brasov</p>
                 <p><i class="fa fa-phone-alt mr-2"></i>+040 345 67890</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>rasnita@yahoo.com</p>
             </div>
             <div class="col-lg-5 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Urmărește-ne pe Social Media</h4>
-                
                 <div class="d-flex justify-content-start">
                     <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -130,7 +170,7 @@
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#">Alice Pazitor</a>. All Rights Reserved.</a></p>
+            <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#">Alice Păzitor</a>. All Rights Reserved.</a></p>
             
         </div>
     </div>

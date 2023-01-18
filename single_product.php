@@ -96,7 +96,7 @@ else
                     <div class="row align-items-center mb-5 text-center">
                         <div class="col-12 col-sm-12">
                             <img style="width:200px; height: 200px" class="rounded-circle mb-3 mb-sm-0" src="<?php echo 'assets/img/'.$product['product_image']; ?>" alt="">
-                            <h5 class="menu-price" style="font-size: 20px"><?php echo $product['product_price'];?> lei</h5>
+                            <h5 class="menu-price" style="font-size: 20px"><?php echo $product['product_price'];?> EUR</h5>
                         </div>
                         <div class="col-12 col-sm-12 mt-5">
                             <h4><?php echo $product['product_name']; ?></h4>
